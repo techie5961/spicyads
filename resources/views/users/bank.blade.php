@@ -24,7 +24,7 @@
 @section('main')
     <section class="w-full g-10 p-10 column flex-auto align-center">
 
-        <div class="bg-secondary-dark w-full column g-10 max-w-500 br-10 p-10">
+        <div class="bg-white box-shadow w-full column g-10 max-w-500 br-10 p-10">
             <div class="row p-10 space-between br-10 border-1 border-color-dim align-center">
 
                 <span class="desc bold">Bank Account</span>
@@ -38,7 +38,7 @@
             <form action="{{ url('users/post/add/bank/process') }}" method="POST" onsubmit="PostRequest(event,this,MyFunc.Added)" class="w-full column g-10">
                <input type="hidden" class="input" name="_token" value="{{ @csrf_token() }}">
                 <label for="">Account Number</label>
-                <div class="cont row align-center w-full h-50 br-10 border-1 bg border-color-silver">
+                <div class="cont row align-center w-full h-50 br-10 border-1 bg-dim border-color-silver">
                     <input oninput="
 
       if((document.querySelector('.account-number').value).length == 10 &&   document.querySelector('.bank-code').value !== ''){
@@ -54,7 +54,7 @@
         " placeholder="Enter 10 digits account number" name="account_number" type="number" class="w-full  c-white inp input required account-number h-full no-border br-10 bg-transparent">
                 </div>
                   <label for="">Account Bank</label>
-                <div onclick="SlideUp()" class="cont row align-center space-between g-10 p-10 no-select w-full h-50 br-10 border-1 bg border-color-silver">
+                <div onclick="SlideUp()" class="cont row align-center space-between g-10 p-10 no-select w-full h-50 br-10 border-1 bg-dim border-color-silver">
                  <input type="hidden" class="bank-code">
                  <input type="hidden" name="bank_name" class="inp bank-name input required">
                     <span class="bank-selected">Select Bank</span>
@@ -73,7 +73,7 @@
             </form>
         </div>
        @if ($bank_linked !== 'false')
-            <div class="w-full max-w-500 p-10 br-10 bg-secondary column g-10">
+            <div class="w-full bg-white box-shadow max-w-500 p-10 br-10 column g-10">
                 <div class="w-full p-10 bg-green-transparent bold font-cinzel-decorative desc br-10 justify-center text-center">Current Bank Details</div>
             <div class="row space-between g-10 align-center">
                 <strong class="font-1 c-primary">Account Number :</strong>

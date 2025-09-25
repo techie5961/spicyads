@@ -35,7 +35,8 @@ class AdminsPostRequestController extends Controller
     }
     // add package
     public function AddPackage(){
-       DB::table('packages')->insert([
+        if(DB::table('packages')->exists()){
+            DB::table('packages')->update([
         'name' => request('name'),
         'cost' => request('fee'),
         'cashback' => request('cashback') ?? null,
@@ -47,6 +48,31 @@ class AdminsPostRequestController extends Controller
         'tiktok_monitizing' => request('tiktok_minitizing') ?? null,
         'casino_game' => request('casino_game') ?? null,
         'daily_advert' => request('daily_advert') ?? null,
+        'spin' => request()->input('spin'),
+        'daily_tasks' => request()->input('daily_tasks'),
+        'updated' => Carbon::now(),
+        'date' => Carbon::now()
+       ]);
+       return response()->json([
+        'message' => 'Package updated successfully',
+        'status' => 'success',
+        'url' => url('admins/packages/manage')
+        ]);
+        }else{
+             DB::table('packages')->insert([
+        'name' => request('name'),
+        'cost' => request('fee'),
+        'cashback' => request('cashback') ?? null,
+        'subordinate' => request('subordinate') ?? null,
+        'first_indirect' => request('first_indirect') ?? null,
+        'free_data' => request('free_data') ?? null,
+        'article_writing' => request('article_writing') ?? null,
+        'earning_per_click' => request('earning_per_click') ?? null,
+        'tiktok_monitizing' => request('tiktok_minitizing') ?? null,
+        'casino_game' => request('casino_game') ?? null,
+        'daily_advert' => request('daily_advert') ?? null,
+        'spin' => request()->input('spin'),
+        'daily_tasks' => request()->input('daily_tasks'),
         'updated' => Carbon::now(),
         'date' => Carbon::now()
        ]);
@@ -55,6 +81,8 @@ class AdminsPostRequestController extends Controller
         'status' => 'success',
         'url' => url('admins/packages/manage')
         ]);
+        }
+      
     }
     // create coupon
     public function CreateCoupon(){

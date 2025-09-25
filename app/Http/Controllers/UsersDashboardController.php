@@ -26,8 +26,8 @@ class UsersDashboardController extends Controller
      // referral register
     public function RefRegister($ref){
         $username='';
-       if( DB::table('users')->where('uniqid',$ref)->exists()){
-         $username=DB::table('users')->where('uniqid',$ref)->first()->username;
+       if( DB::table('users')->where('username',$ref)->exists()){
+         $username=DB::table('users')->where('username',$ref)->first()->username;
        }
         return view('users.auth.register',[
             'pkg' => DB::table('packages')->where('status','active')->orderBy('date','desc')->get(),
@@ -37,7 +37,9 @@ class UsersDashboardController extends Controller
     // dashboard
     public function Dashboard(){
     
-    return view('users.dashboard');
+    return view('users.dashboard',[
+        'general' => json_decode(DB::table('settings')->where('key','general_settings')->first()->json ?? '{}')
+    ]);
     }
     // tasks
     public function Tasks(){
@@ -84,7 +86,9 @@ class UsersDashboardController extends Controller
     }
     // profile
     public function Profile(){
-        return view('users.profile');
+        return view('users.profile',[
+            'general' => json_decode(DB::table('settings')->where('key','general_settings')->first()->json ?? '{}')
+        ]);
     }
     // add bank
     public function AddBank(){
@@ -139,5 +143,20 @@ class UsersDashboardController extends Controller
     public function FAQs(){
         return view('users.faqs');
     }
+    // logout
+    public function Logout(){
+        Auth::guard('users')->logout();
+        return redirect('login');
+    }
+    // password update
+    public function Password(){
+        return view('users.password');
+    }
+    // contact us
+     public function Contact(){
+        return view('users.contact',[
+        'general' => json_decode(DB::table('settings')->where('key','general_settings')->first()->json ?? '{}')
+    ]);
+     }
 
 }

@@ -10,6 +10,8 @@ use App\Http\Controllers\AdminsGetRequestController;
 use App\Http\Controllers\UserPostRequestController;
 use App\Http\Controllers\UsersGetRequestController;
 use App\Http\Middleware\UsersAuthCheckerMiddleware;
+use App\Http\Middleware\UserIsLoggedInMiddleware;
+use App\Http\Middleware\AdminIsLoggedInMiddleware;
 
 
 
@@ -30,7 +32,11 @@ Route::get('/terms',[
 Route::get('/faqs',[
     UsersDashboardController::class,'FAQs'
 ]);
-Route::get('login',[
+Route::get('/contact',[
+    UsersDashboardController::class,'Contact'
+]);
+Route::middleware([UserIsLoggedInMiddleware::class])->group(function(){
+    Route::get('login',[
     UsersDashboardController::class,'Login'
 ]);
 Route::get('register',[
@@ -40,6 +46,7 @@ Route::get('register/{ref}',[
     UsersDashboardController::class,'RefRegister'
 ]);
 
+});
 
 //  prefix users
 Route::prefix('users')->group(function(){
@@ -70,6 +77,12 @@ Route::prefix('users')->group(function(){
     // ]);
     Route::get('team',[
         UsersDashboardController::class,'Team'
+    ]);
+    Route::get('logout',[
+        UsersDashboardController::class,'Logout'
+    ]);
+    Route::get('password/update',[
+        UsersDashboardController::class,'Password'
     ]);
 
    });
@@ -103,6 +116,9 @@ Route::prefix('users')->group(function(){
         Route::post('withdraw/process',[
             UserPostRequestController::class,'Withdraw'
         ]);
+        Route::post('update/password/process',[
+            UserPostRequestController::class,'UpdatePassword'
+        ]);
     });
 });
 
@@ -114,11 +130,14 @@ Route::prefix('users')->group(function(){
 
 // prefix admins
 Route::prefix('admins')->group(function(){
-    // auth
+   
+   Route::middleware([AdminIsLoggedInMiddleware::class])->group(function(){
+ // auth
      Route::get('login',[
         AdminsDashboardController::class,'Login'
     ]);
 
+   });
 // dashboard
    Route::middleware([AdminLoggedInMiddleware::class])->group(function(){
     
@@ -185,6 +204,29 @@ Route::prefix('admins')->group(function(){
     ]);
     Route::get('ban/user',[
         AdminsGetRequestController::class,'BanUser'
+    ]);
+    Route::get('tasks/submitted',[
+        AdminsDashboardController::class,'Submitted'
+    ]);
+     // search
+    Route::get('search/users',[
+        AdminsGetRequestController::class,'SearchUsers'
+    ]);
+    // logs
+    Route::get('logs',[
+        AdminsDashboardController::class,'Logs'
+    ]);
+    Route::get('notifications',[
+        AdminsDashboardController::class,'Notifications'
+    ]);
+    Route::get('notification/mark/as/read',[
+        AdminsDashboardController::class,'MarkAsRead'
+    ]);
+     Route::get('notification/mark/all/as/read',[
+        AdminsDashboardController::class,'MarkAllAsRead'
+    ]);
+    Route::get('logout',[
+        AdminsDashboardController::class,'Logout'
     ]);
 
 

@@ -8,7 +8,7 @@
         <button onclick="
         document.querySelector('svg.spin').style.animation='spin 1s linear infinite';
         GetRequest(event,'{{ url('users/get/spin/grant/reward') }}',document.createElement('div'),MyFunc.Spinned);
-        " class="btn-green-3d clip-5 br-5">Spin & Win</button>
+        " class="btn-green-3d c-white clip-5 br-5">Spin & Win</button>
     </section>
 @endsection
 @section('js')

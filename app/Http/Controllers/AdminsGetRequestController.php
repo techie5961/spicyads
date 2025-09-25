@@ -95,4 +95,13 @@ class AdminsGetRequestController extends Controller
           return redirect('admins/user?id='.request()->input('id').'');
       }
     }
+    // search users
+    public function SearchUsers(){
+        $users=DB::table('users')->where('username','like','%'.request()->input('q').'%')->orWhere('name','like','%'.request()->input('q').'%')->orWhere('email','like','%'.request()->input('q').'%')->limit(10)->get();
+        return view('components.sections',[
+            'search_users' => true,
+            'users' => $users
+        ]);
+
+    }
 }

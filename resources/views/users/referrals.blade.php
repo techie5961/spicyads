@@ -11,7 +11,7 @@
             ])
         @else
             @foreach ($team as $data)
-                <div class="w-full br-10 p-10 bg-secondary-dark column g-10">
+                <div class="w-full cc-white br-10 p-10 bg-white box-shadow column g-10">
                     <div class="row align-center w-full g-10 space-between">
                         <img src="{{ asset('users/'.$data->photo.'') }}" alt="User Photo" class="circle clip-circle h-50 w-50">
                         <div class="column g-5 m-right-auto">
@@ -28,7 +28,7 @@
                                     Indirect Referral
                                 @endif</span>
                                 </div>
-                                <div class="status {{ $data->status == 'active' ? 'green' : red }}">{{ $data->status }}</div>
+                                <div class="status {{ $data->status == 'active' ? 'green' : 'red' }}">{{ $data->status }}</div>
                        
                     </div>
                     <hr>

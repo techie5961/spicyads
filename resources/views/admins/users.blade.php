@@ -43,6 +43,31 @@
             'text' => 'No User Found'
           ])
       @else
+      <div class="w-full pos-relative p-10 bg-white box-shadow br-10">
+        <div class="cont row h-50 g-5 align-center bg-dim border-1 border-color-silver br-10">
+ <div class="h-full column justify-center p-10">
+  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#6c5ce6" viewBox="0 0 256 256"><path d="M229.66,218.34l-50.07-50.06a88.11,88.11,0,1,0-11.31,11.31l50.06,50.07a8,8,0,0,0,11.32-11.32ZM40,112a72,72,0,1,1,72,72A72.08,72.08,0,0,1,40,112Z"></path></svg>
+ </div>
+          <input oninput="
+         try{
+          GetRequest(event,'{{ url('admins/search/users?q=') }}' + this.value,document.createElement('div'),Searched);
+
+         }catch(error){
+         CreateNotify('error',error.stack);
+         }
+          " type="search" placeholder="Search by username,name or email" class="w-full no-border h-full br-10 bg-transparent">
+    
+        </div>
+        <div class="pos-absolute search-results display-none average left-0 right-0 top-full w-full bg-white box-shadow br-10 column p-10">
+          <a href="" class="row br-10 clip-10 text-dim align-center g-2 space-between no-u p-10">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#708090" viewBox="0 0 256 256"><path d="M230.92,212c-15.23-26.33-38.7-45.21-66.09-54.16a72,72,0,1,0-73.66,0C63.78,166.78,40.31,185.66,25.08,212a8,8,0,1,0,13.85,8c18.84-32.56,52.14-52,89.07-52s70.23,19.44,89.07,52a8,8,0,1,0,13.85-8ZM72,96a56,56,0,1,1,56,56A56.06,56.06,0,0,1,72,96Z"></path></svg>
+
+            <span class="m-right-auto">Techie5961</span>
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="CurrentColor" viewBox="0 0 256 256"><path d="M200,64V168a8,8,0,0,1-16,0V83.31L69.66,197.66a8,8,0,0,1-11.32-11.32L172.69,72H88a8,8,0,0,1,0-16H192A8,8,0,0,1,200,64Z"></path></svg>
+
+          </a>
+        </div>
+         </div>
          @foreach ($users as $data)
              <div class="column w-full g-10 p-10 br-10 bg-white box-shadow">
                 <div class="row w-full g-10 space-between">
@@ -138,5 +163,13 @@
 @section('js')
     <script class="js">
         InfiniteLoading();
+        function Searched(response){
+         if(response == ''){
+           document.querySelector('.search-results').classList.add('display-none');
+         }else{
+           document.querySelector('.search-results').innerHTML=response;
+           document.querySelector('.search-results').classList.remove('display-none');
+         }
+        }
     </script>
 @endsection

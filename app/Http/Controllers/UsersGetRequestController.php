@@ -44,6 +44,12 @@ class UsersGetRequestController extends Controller
             'completed' => DB::raw('`completed` + 1'),
             'status' => DB::raw('CASE WHEN `completed` + 1 >= `limit` THEN "completed" ELSE "active" END')
         ]);
+         DB::table('notifications')->insert([
+        'message' => '<strong class="font-1 c-green">'.Auth::guard('users')->user()->username.'</strong> Just completed a task',
+        'status' => 'unread',
+        'date' => Carbon::now(),
+        'updated' => Carbon::now()
+       ]);
         return response()->json([
             'status' => 'success',
             'message' => 'Task completed and reward granted',
@@ -55,7 +61,11 @@ class UsersGetRequestController extends Controller
     // spin grant reward
     public function SpinReward(){
         $general=json_decode(DB::table('settings')->where('key','general_settings')->first()->json ?? '{}');
-        $reward=rand($general->spin_minimum,$general->spin_maximum);
+        $reward=json_decode(Auth::guard('users')->user()->package)->spin;
+        // return response()->json([
+        //     'message' => $reward,
+        //     'status' => 'error'
+        // ]);
         if(DB::table('transactions')->where('user_id',Auth::guard('users')->user()->id)->where('type','Spin Reward')->whereDate('date',Carbon::today())->exists()){
             return response()->json([
                 'message' => 'You have spinned today,try again tomorrow',
@@ -80,6 +90,12 @@ class UsersGetRequestController extends Controller
             'updated' => Carbon::now(),
             'date' => Carbon::now()
         ]);
+         DB::table('notifications')->insert([
+        'message' => '<strong class="font-1 c-green">'.Auth::guard('users')->user()->username.'</strong> Just spinned',
+        'status' => 'unread',
+        'date' => Carbon::now(),
+        'updated' => Carbon::now()
+       ]);
         return response()->json([
             'message' => '&#8358;'.$reward.' spin reward granted successfully',
             'status' => 'success',
@@ -88,10 +104,10 @@ class UsersGetRequestController extends Controller
     }
     //  bank auto verify
     public function BankAutoVerify(){
-        //  return response()->json([
-        //     'message' => 'David James',
-        //     'status' => 'success'
-        //   ]);
+         return response()->json([
+            'message' => 'David James',
+            'status' => 'success'
+          ]);
         $verify=Http::withToken(env('PSTCK_SECRET_KEY'))->get('https://api.paystack.co/bank/resolve',[
             'account_number' => request()->input('account_number'),
             'bank_code' => request()->input('bank_code')

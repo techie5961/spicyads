@@ -10,10 +10,10 @@
                <strong class="desc">{{ Auth::guard('users')->user()->username ?? 'null' }}</strong>
                <span class text-dim>{{ Auth::guard('users')->user()->phone ?? 'null' }}</span>
             </div>
-            <button class="btn-red">Logout</button>
+            <button onclick="window.location.href='{{ url('users/logout') }}'" class="btn-red">Logout</button>
         </div> 
-        <div class="w-full grid grid-2 g-10 pc-grid-4 place-center">
-            <div style="border:0.1px solid var(--bg-secondary-light)" class="bg-secondary-dark align-center w-full br-10 border-1 border-color-dim p-10 column g-10">
+        <div class="w-full grid grid-2 g-10 place-center">
+            <div style="border:0.1px solid var(--bg-secondary-light)" class="bg-secondary-dark display-none align-center w-full br-10 border-1 border-color-dim p-10 column g-10">
                <div class="row align-center w-full g-5">
                  <div class="h-40 min-h-40 min-w-40 w-40 column justify-center bg-green c-white br-10">
                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="CurrentColor" viewBox="0 0 256 256"><path d="M117.25,157.92a60,60,0,1,0-66.5,0A95.83,95.83,0,0,0,3.53,195.63a8,8,0,1,0,13.4,8.74,80,80,0,0,1,134.14,0,8,8,0,0,0,13.4-8.74A95.83,95.83,0,0,0,117.25,157.92ZM40,108a44,44,0,1,1,44,44A44.05,44.05,0,0,1,40,108Zm210.14,98.7a8,8,0,0,1-11.07-2.33A79.83,79.83,0,0,0,172,168a8,8,0,0,1,0-16,44,44,0,1,0-16.34-84.87,8,8,0,1,1-5.94-14.85,60,60,0,0,1,55.53,105.64,95.83,95.83,0,0,1,47.22,37.71A8,8,0,0,1,250.14,206.7Z"></path></svg>
@@ -22,7 +22,7 @@
                </div>
                <strong class="desc">500</strong>
             </div>
-             <div style="border:0.1px solid var(--bg-secondary-light)" class="bg-secondary-dark align-center w-full br-10 border-1 border-color-dim p-10 column g-10">
+             <div style="border:0.1px solid var(--bg-secondary-light)" class="bg-white box-shadow align-center w-full br-10 border-1 border-color-dim p-10 column g-10">
                <div class="row align-center w-full g-5">
                  <div class="h-40 min-h-40 min-w-40 w-40 column justify-center bg-blue c-white br-10">
                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="CurrentColor" viewBox="0 0 256 256"><path d="M216,72H130.67L102.93,51.2a16.12,16.12,0,0,0-9.6-3.2H40A16,16,0,0,0,24,64V200a16,16,0,0,0,16,16H216.89A15.13,15.13,0,0,0,232,200.89V88A16,16,0,0,0,216,72Zm0,128H40V64H93.33L123.2,86.4A8,8,0,0,0,128,88h88Zm-56-56a8,8,0,0,1-8,8H136v16a8,8,0,0,1-16,0V152H104a8,8,0,0,1,0-16h16V120a8,8,0,0,1,16,0v16h16A8,8,0,0,1,160,144Z"></path></svg>
@@ -31,7 +31,7 @@
                </div>
                <strong class="desc">&#8358;{{ number_format(Auth::guard('users')->user()->affiliate_balance,2) }}</strong>
             </div>
-             <div style="border:0.1px solid var(--bg-secondary-light)" class="bg-secondary-dark align-center w-full br-10 border-1 border-color-dim p-10 column g-10">
+             <div style="border:0.1px solid var(--bg-secondary-light)" class="bg-white box-shadow align-center w-full br-10 border-1 border-color-dim p-10 column g-10">
                <div class="row align-center w-full g-5">
                  <div class="h-40 min-h-40 min-w-40 w-40 column justify-center bg-gold c-black br-10">
                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="CurrentColor" viewBox="0 0 256 256"><path d="M208,48H48A24,24,0,0,0,24,72V184a24,24,0,0,0,24,24H208a24,24,0,0,0,24-24V72A24,24,0,0,0,208,48ZM40,96H216v16H160a8,8,0,0,0-8,8,24,24,0,0,1-48,0,8,8,0,0,0-8-8H40Zm8-32H208a8,8,0,0,1,8,8v8H40V72A8,8,0,0,1,48,64ZM208,192H48a8,8,0,0,1-8-8V128H88.8a40,40,0,0,0,78.4,0H216v56A8,8,0,0,1,208,192Z"></path></svg>
@@ -40,7 +40,7 @@
                </div>
                <strong class="desc">&#8358;{{ number_format(Auth::guard('users')->user()->activities_balance,2) }}</strong>
             </div>
-             <div style="border:0.1px solid var(--bg-secondary-light)" class="bg-secondary-dark align-center w-full br-10 border-1 border-color-dim p-10 column g-10">
+             <div style="border:0.1px solid var(--bg-secondary-light)" class="bg-secondary-dark display-none align-center w-full br-10 border-1 border-color-dim p-10 column g-10">
                <div class="row align-center w-full g-5">
                  <div class="h-40 min-h-40 min-w-40 w-40 column justify-center bg-purple c-white br-10">
                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="CurrentColor" viewBox="0 0 256 256"><path d="M216,40H40A16,16,0,0,0,24,56V192a16,16,0,0,0,16,16H56v16a8,8,0,0,0,16,0V208H184v16a8,8,0,0,0,16,0V208h16a16,16,0,0,0,16-16V56A16,16,0,0,0,216,40Zm0,152H40V56H216v64H199.32a48,48,0,1,0,0,16H216v56Zm-50.16-72a16,16,0,1,0,0,16H183a32,32,0,1,1,0-16Z"></path></svg>
@@ -55,7 +55,7 @@
 
            ACCOUNT DETAILS
         </div>
-        <div class="w-full no-select bg-secondary-dark p-10 br-10 column">
+        <div class="w-full no-select bg-white box-shadow p-10 br-10 column">
             <div style="border-bottom:0.1px solid #708090" class="w-full p-10 g-5 row align-center">
                 <div class="h-40 min-h-40 min-w-40 w-40 column justify-center bg-gold c-black br-10">
              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="CurrentColor" viewBox="0 0 256 256"><path d="M200,112a8,8,0,0,1-8,8H152a8,8,0,0,1,0-16h40A8,8,0,0,1,200,112Zm-8,24H152a8,8,0,0,0,0,16h40a8,8,0,0,0,0-16Zm40-80V200a16,16,0,0,1-16,16H40a16,16,0,0,1-16-16V56A16,16,0,0,1,40,40H216A16,16,0,0,1,232,56ZM216,200V56H40V200H216Zm-80.26-34a8,8,0,1,1-15.5,4c-2.63-10.26-13.06-18-24.25-18s-21.61,7.74-24.25,18a8,8,0,1,1-15.5-4,39.84,39.84,0,0,1,17.19-23.34,32,32,0,1,1,45.12,0A39.76,39.76,0,0,1,135.75,166ZM96,136a16,16,0,1,0-16-16A16,16,0,0,0,96,136Z"></path></svg>
@@ -96,7 +96,7 @@
                     <span class="text-dim">{{ Auth::guard('users')->user()->phone }}</span>
                 </div>
             </div>
-            <div class="row bg-secondary-light w-full no-select align-center justify-center pointer p-10 clip-10">
+            <div onclick="spa(event,'{{ url('users/password/update') }}')" class="row bg-secondary-light w-full no-select align-center justify-center pointer p-10 clip-10">
                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="CurrentColor" viewBox="0 0 256 256"><path d="M128,24A104,104,0,1,0,232,128,104.11,104.11,0,0,0,128,24Zm0,192a88,88,0,1,1,88-88A88.1,88.1,0,0,1,128,216Zm40-104a40,40,0,1,0-65.94,30.44L88.68,172.77A8,8,0,0,0,96,184h64a8,8,0,0,0,7.32-11.23l-13.38-30.33A40.14,40.14,0,0,0,168,112ZM136.68,143l11,25.05H108.27l11-25.05A8,8,0,0,0,116,132.79a24,24,0,1,1,24,0A8,8,0,0,0,136.68,143Z"></path></svg>
 
                 <span>Update Password</span>
@@ -107,8 +107,8 @@
 
            OTHERS
         </div>
-        <div class="w-full no-select bg-secondary-dark p-10 br-10 column">
-            <div class="w-full clip-10 pointer p-10 g-5 row align-center">
+        <div class="w-full no-select bg-white box-shadow p-10 br-10 column">
+            <div onclick="spa(event,'{{ url('users/bank/add') }}')" class="w-full clip-10 pointer p-10 g-5 row align-center">
                 
              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="gold" viewBox="0 0 256 256"><path d="M24,104H48v64H32a8,8,0,0,0,0,16H224a8,8,0,0,0,0-16H208V104h24a8,8,0,0,0,4.19-14.81l-104-64a8,8,0,0,0-8.38,0l-104,64A8,8,0,0,0,24,104Zm40,0H96v64H64Zm80,0v64H112V104Zm48,64H160V104h32ZM128,41.39,203.74,88H52.26ZM248,208a8,8,0,0,1-8,8H16a8,8,0,0,1,0-16H240A8,8,0,0,1,248,208Z"></path></svg>
 
@@ -120,7 +120,7 @@
                 <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="CurrentColor" viewBox="0 0 256 256"><path d="M181.66,133.66l-80,80a8,8,0,0,1-11.32-11.32L164.69,128,90.34,53.66a8,8,0,0,1,11.32-11.32l80,80A8,8,0,0,1,181.66,133.66Z"></path></svg>
 
             </div>
-             <div class="w-full clip-10 pointer p-10 g-5 row align-center">
+             <div  onclick="spa(event,'{{ url('users/withdraw') }}')" class="w-full clip-10 pointer p-10 g-5 row align-center">
                 
              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="orange" viewBox="0 0 256 256"><path d="M128,88a40,40,0,1,0,40,40A40,40,0,0,0,128,88Zm0,64a24,24,0,1,1,24-24A24,24,0,0,1,128,152ZM240,56H16a8,8,0,0,0-8,8V192a8,8,0,0,0,8,8H240a8,8,0,0,0,8-8V64A8,8,0,0,0,240,56ZM193.65,184H62.35A56.78,56.78,0,0,0,24,145.65v-35.3A56.78,56.78,0,0,0,62.35,72h131.3A56.78,56.78,0,0,0,232,110.35v35.3A56.78,56.78,0,0,0,193.65,184ZM232,93.37A40.81,40.81,0,0,1,210.63,72H232ZM45.37,72A40.81,40.81,0,0,1,24,93.37V72ZM24,162.63A40.81,40.81,0,0,1,45.37,184H24ZM210.63,184A40.81,40.81,0,0,1,232,162.63V184Z"></path></svg>
 
@@ -132,7 +132,7 @@
                 <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="CurrentColor" viewBox="0 0 256 256"><path d="M181.66,133.66l-80,80a8,8,0,0,1-11.32-11.32L164.69,128,90.34,53.66a8,8,0,0,1,11.32-11.32l80,80A8,8,0,0,1,181.66,133.66Z"></path></svg>
 
             </div>
-            <div class="w-full clip-10 pointer p-10 g-5 row align-center">
+            <div onclick="window.open('{{ $general->whatsapp_group }}')" class="w-full clip-10 pointer p-10 g-5 row align-center">
                 
             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="#4caf50" viewBox="0 0 256 256"><path d="M187.58,144.84l-32-16a8,8,0,0,0-8,.5l-14.69,9.8a40.55,40.55,0,0,1-16-16l9.8-14.69a8,8,0,0,0,.5-8l-16-32A8,8,0,0,0,104,64a40,40,0,0,0-40,40,88.1,88.1,0,0,0,88,88,40,40,0,0,0,40-40A8,8,0,0,0,187.58,144.84ZM152,176a72.08,72.08,0,0,1-72-72A24,24,0,0,1,99.29,80.46l11.48,23L101,118a8,8,0,0,0-.73,7.51,56.47,56.47,0,0,0,30.15,30.15A8,8,0,0,0,138,155l14.61-9.74,23,11.48A24,24,0,0,1,152,176ZM128,24A104,104,0,0,0,36.18,176.88L24.83,210.93a16,16,0,0,0,20.24,20.24l34.05-11.35A104,104,0,1,0,128,24Zm0,192a87.87,87.87,0,0,1-44.06-11.81,8,8,0,0,0-6.54-.67L40,216,52.47,178.6a8,8,0,0,0-.66-6.54A88,88,0,1,1,128,216Z"></path></svg>
 
@@ -145,7 +145,7 @@
 
             </div>
              
-            <div class="w-full clip-10 pointer p-10 g-5 row align-center">
+            <div  onclick="window.open('{{ $general->telegram_group }}')" class="w-full clip-10 pointer p-10 g-5 row align-center">
                 
            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="aqua" viewBox="0 0 256 256"><path d="M228.88,26.19a9,9,0,0,0-9.16-1.57L17.06,103.93a14.22,14.22,0,0,0,2.43,27.21L72,141.45V200a15.92,15.92,0,0,0,10,14.83,15.91,15.91,0,0,0,17.51-3.73l25.32-26.26L165,220a15.88,15.88,0,0,0,10.51,4,16.3,16.3,0,0,0,5-.79,15.85,15.85,0,0,0,10.67-11.63L231.77,35A9,9,0,0,0,228.88,26.19Zm-61.14,36L78.15,126.35l-49.6-9.73ZM88,200V152.52l24.79,21.74Zm87.53,8L92.85,135.5l119-85.29Z"></path></svg>
 

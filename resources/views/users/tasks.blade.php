@@ -12,7 +12,7 @@
         @else
         <strong class="desc c-primary grid-full">Available Tasks</strong>
             @foreach ($tasks as $data)
-            <div class="column w-full no-select g-10 p-10 br-10 bg-secondary-dark box-shadow">
+            <div class="column w-full no-select g-10 p-10 br-10 bg-white box-shadow">
                 <div class="row w-full align-center space-between">
                     <strong>{{ $data->title ?? 'null' }}</strong>
                     <div class="p-y-5 p-x-10 c-black bg-gold br-1000 bold">&#8358;{{ number_format($data->reward ?? 0,2) }}</div>

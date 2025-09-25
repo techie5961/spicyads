@@ -40,30 +40,74 @@ background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/s
         left:30% !important;
       }
     </style>
+     <style>
+    .notification-icon {
+      position: relative;
+      display: inline-block;
+      width: 25px;
+      height: 25px;
+    
+    }
+    
+    .bell-icon {
+      width: 100%;
+      height: 100%;
+    }
+    
+    .notification-badge {
+      position: absolute;
+      top: -2px;
+      right: -2px;
+      min-width: 13px;
+      height: 13px;
+      padding:0 3px;
+      background-color: #fa3e3e;
+      border-radius: 8px;
+      color: white;
+    
+      font-size: 7px;
+      font-weight: bold;
+      line-height: 16px;
+      text-align: center;
+      box-shadow: 0 0 0 1.5px white;
+      transition: transform 0.2s ease;
+     
+    }
+    
+
+    
+   
+  </style>
 </head>
 
 <body>
-    <header style="background:rgba(0,255,0,0.2)" class="pos-sticky backdrop-blur-5 average c-white bg p-10 top-0 left-0 right-0 bottom-0 row align-center g-10">
+    <header style="background:rgba(0,255,0,0.2);z-index:7000" class="pos-sticky high backdrop-blur-5 average c-white bg p-10 top-0 left-0 right-0 bottom-0 row align-center g-10">
         <div onclick="
             document.querySelector('nav').classList.remove('mobile-display-none');
              document.querySelector('nav section.nav').classList.add('animation-trans-in-from-left');
-            
+            document.body.classList.add('overflow-hidden');
 
-            " class="h-40 w-40 column pc-display-none justify-center c-bg br-10 p-10 bg-white">
+            " class="h-40 border-1 w-40 column pc-display-none justify-center c-bg br-10 p-10 bg-white">
           <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="CurrentColor" viewBox="0 0 256 256"><path d="M228,128a12,12,0,0,1-12,12H40a12,12,0,0,1,0-24H216A12,12,0,0,1,228,128ZM40,76H216a12,12,0,0,0,0-24H40a12,12,0,0,0,0,24ZM216,180H40a12,12,0,0,0,0,24H216a12,12,0,0,0,0-24Z"></path></svg>
             
         </div>
-        <img src="{{ asset('favicon/logo.png?v=1.1') }}" alt="Logo" class="h-30">
+        <img  onclick="window.location.href='{{ url('/') }}'" src="{{ asset('favicon/logo.png?v=1.1') }}" alt="Logo" class="h-30 pc-pointer">
         <div class="m-left-auto row g-5 align-center">
-            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="CurrentColor" viewBox="0 0 256 256"><path d="M221.8,175.94C216.25,166.38,208,139.33,208,104a80,80,0,1,0-160,0c0,35.34-8.26,62.38-13.81,71.94A16,16,0,0,0,48,200H88.81a40,40,0,0,0,78.38,0H208a16,16,0,0,0,13.8-24.06ZM128,216a24,24,0,0,1-22.62-16h45.24A24,24,0,0,1,128,216ZM48,184c7.7-13.24,16-43.92,16-80a64,64,0,1,1,128,0c0,36.05,8.28,66.73,16,80Z"></path></svg>
-
+            <div onclick="window.location.href='{{ url('admins/notifications') }}'" class="notification-icon">
+    <!-- Bell icon -->
+    <svg height="30" width="30" class="bell-icon" fill="green" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256">
+      <path d="M221.8,175.94C216.25,166.38,208,139.33,208,104a80,80,0,1,0-160,0c0,35.34-8.26,62.38-13.81,71.94A16,16,0,0,0,48,200H88.81a40,40,0,0,0,78.38,0H208a16,16,0,0,0,13.8-24.06ZM128,216a24,24,0,0,1-22.62-16h45.24A24,24,0,0,1,128,216Z"/>
+    </svg>
+    {!! NotifyAmount() !!}
+  </div>
         </div>
     </header>
     <nav onclick="
     this.querySelector('section.nav').classList.remove('animation-trans-in-from-left');
     this.classList.add('mobile-display-none');
+    document.body.classList.remove('overflow-hidden');
   
-    " class="pos-fixed mobile-display-none high top-0 left-0 right-0 bottom-0 bg-black-transparent average">
+    " style="z-index:7000" class="pos-fixed mobile-display-none high top-0 left-0 right-0 bottom-0 bg-black-transparent average">
         <section onclick="event.stopPropagation()" class="nav transition-ease-half overflow-auto column bg-white h-full w-semi-full">
             <div class="nav-profile pos-sticky stick-top w-full column g-10 p-10">
                 <img src="{{ asset('images/avatar.svg') }}" alt="" class="h-70 w-70 circle border-4 border-color-primary box-shadow">
@@ -101,30 +145,14 @@ background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/s
                             <a class="p-10 w-full row g-5 no-u c-black" href="{{ url('admins/users/banned') }}">Banned Users</a>
                       </div>
                 </div>
-                 <div class="nav-group w-full column">
-                     <a onclick="
-                     let child=this.closest('.nav-group').querySelector('.nav-child');
-                     if(child.classList.contains('display-none')){
-                        child.classList.remove('display-none');
-                        this.closest('.nav-group').querySelector('.main-a .chevron').classList.add('rotate-90');
-
-                     }else{
-                     child.classList.add('display-none');
-                     this.closest('.nav-group').querySelector('.main-a .chevron').classList.remove('rotate-90');
-
-                    }
-                     " class="p-10 w-full main-a row g-5 no-u c-black" >
-                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="CurrentColor" viewBox="0 0 256 256"><path d="M224,64H176V56a24,24,0,0,0-24-24H104A24,24,0,0,0,80,56v8H32A16,16,0,0,0,16,80V192a16,16,0,0,0,16,16H224a16,16,0,0,0,16-16V80A16,16,0,0,0,224,64ZM96,56a8,8,0,0,1,8-8h48a8,8,0,0,1,8,8v8H96ZM224,80v32H192v-8a8,8,0,0,0-16,0v8H80v-8a8,8,0,0,0-16,0v8H32V80Zm0,112H32V128H64v8a8,8,0,0,0,16,0v-8h96v8a8,8,0,0,0,16,0v-8h32v64Z"></path></svg>
-                      Packages
-                      <svg class="m-left-auto chevron transition-ease-half" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="CurrentColor" viewBox="0 0 256 256"><path d="M141.66,133.66l-80,80a8,8,0,0,1-11.32-11.32L124.69,128,50.34,53.66A8,8,0,0,1,61.66,42.34l80,80A8,8,0,0,1,141.66,133.66Zm80-11.32-80-80a8,8,0,0,0-11.32,11.32L204.69,128l-74.35,74.34a8,8,0,0,0,11.32,11.32l80-80A8,8,0,0,0,221.66,122.34Z"></path></svg>
-                      </a> 
-                      <div style="width:calc(100% - 10px)" class="nav-child display-none m-left-10 border-left-4 border-color-bg bg-primary-transparent w-full column">
-                        <a class="p-10 w-full row g-5 no-u c-black" href="{{ url('admins/packages/add') }}">Add Package</a>
-                          <a class="p-10 w-full row g-5 no-u c-black" href="{{ url('admins/packages/manage') }}">Manage Packages</a>
-                           
-                      </div>
-                </div>
-                 <div class="nav-group w-full column">
+                  <a class="p-10 w-full row g-5 no-u c-black" href="{{ url('admins/packages/add') }}">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="CurrentColor" viewBox="0 0 256 256"><path d="M224,64H176V56a24,24,0,0,0-24-24H104A24,24,0,0,0,80,56v8H32A16,16,0,0,0,16,80V192a16,16,0,0,0,16,16H224a16,16,0,0,0,16-16V80A16,16,0,0,0,224,64ZM96,56a8,8,0,0,1,8-8h48a8,8,0,0,1,8,8v8H96ZM224,80v32H192v-8a8,8,0,0,0-16,0v8H80v-8a8,8,0,0,0-16,0v8H32V80Zm0,112H32V128H64v8a8,8,0,0,0,16,0v-8h96v8a8,8,0,0,0,16,0v-8h32v64Z"></path></svg>
+                 
+                    Package Settings
+                <svg class="m-left-auto" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="CurrentColor" viewBox="0 0 256 256"><path d="M141.66,133.66l-80,80a8,8,0,0,1-11.32-11.32L124.69,128,50.34,53.66A8,8,0,0,1,61.66,42.34l80,80A8,8,0,0,1,141.66,133.66Zm80-11.32-80-80a8,8,0,0,0-11.32,11.32L204.69,128l-74.35,74.34a8,8,0,0,0,11.32,11.32l80-80A8,8,0,0,0,221.66,122.34Z"></path></svg>
+                </a>
+                 
+                 <div class="nav-group display-none w-full column">
                      <a onclick="
                      let child=this.closest('.nav-group').querySelector('.nav-child');
                      if(child.classList.contains('display-none')){
@@ -148,7 +176,7 @@ background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/s
                             <a class="p-10 w-full row g-5 no-u c-black" href="{{ url('admins/vendors/banned') }}">Banned Vendors</a>
                       </div>
                 </div>
-                <div class="nav-group w-full column">
+                <div class="nav-group display-none w-full column">
                      <a onclick="
                      let child=this.closest('.nav-group').querySelector('.nav-child');
                      if(child.classList.contains('display-none')){
@@ -259,7 +287,7 @@ background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/s
                     Site Settings
                 <svg class="m-left-auto" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="CurrentColor" viewBox="0 0 256 256"><path d="M141.66,133.66l-80,80a8,8,0,0,1-11.32-11.32L124.69,128,50.34,53.66A8,8,0,0,1,61.66,42.34l80,80A8,8,0,0,1,141.66,133.66Zm80-11.32-80-80a8,8,0,0,0-11.32,11.32L204.69,128l-74.35,74.34a8,8,0,0,0,11.32,11.32l80-80A8,8,0,0,0,221.66,122.34Z"></path></svg>
                 </a>
-                 <a class="p-10 w-full row g-5 no-u c-black" href="">
+                 <a class="p-10 w-full row g-5 no-u c-black" href="{{ url('admins/logs') }}">
                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="CurrentColor" viewBox="0 0 256 256"><path d="M141.66,133.66l-40,40a8,8,0,0,1-11.32-11.32L116.69,136H24a8,8,0,0,1,0-16h92.69L90.34,93.66a8,8,0,0,1,11.32-11.32l40,40A8,8,0,0,1,141.66,133.66ZM200,32H136a8,8,0,0,0,0,16h56V208H136a8,8,0,0,0,0,16h64a8,8,0,0,0,8-8V40A8,8,0,0,0,200,32Z"></path></svg>
 
 
@@ -273,7 +301,7 @@ background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/s
                  
                  
 
-                 <a class="p-10 pos-sticky m-top-auto stick-bottom bg-inherit w-full row g-5 no-u c-red" href="">
+                 <a class="p-10 pos-sticky m-top-auto stick-bottom bg-inherit w-full row g-5 no-u c-red" href="{{ url('admins/logout') }}">
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="CurrentColor" viewBox="0 0 256 256"><path d="M120,216a8,8,0,0,1-8,8H48a8,8,0,0,1-8-8V40a8,8,0,0,1,8-8h64a8,8,0,0,1,0,16H56V208h56A8,8,0,0,1,120,216Zm109.66-93.66-40-40a8,8,0,0,0-11.32,11.32L204.69,120H112a8,8,0,0,0,0,16h92.69l-26.35,26.34a8,8,0,0,0,11.32,11.32l40-40A8,8,0,0,0,229.66,122.34Z"></path></svg>
 
 

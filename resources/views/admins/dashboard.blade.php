@@ -4,7 +4,7 @@
 @endsection
 @section('main')
     <section class="column w-full g-10 p-10">
-        <div class="w-full bg-white br-10 p-10 column g-5 box-shadow">
+        <div onclick="window.location.href='{{ url('admins/users/all') }}'" class="w-full bg-white br-10 p-10 column g-5 box-shadow">
            <div class="row w-full align-center g-10 space-between">
             <div class="h-50 w-50 br-10 bg-secondary column justify-center secondary-text">
               
@@ -26,12 +26,12 @@
              
             </div>
              <div onclick="window.location.href='{{ url('admins/packages/add') }}'" class="p-5 pointer no-select c-white text-average bg-black">
-                Add Package
+                Edit Package
              </div>
               </div>
-              <span>Packages</span>
+              <span>Package Settings</span>
         </div>
-          <div class="w-full bg-white br-10 p-10 column g-5 box-shadow">
+          <div  onclick="window.location.href='{{ url('admins/withdrawals/pending') }}'" class="w-full bg-white br-10 p-10 column g-5 box-shadow">
            <div class="row w-full align-center g-10 space-between">
             <div class="h-50 w-50 br-10 bg-gold c-black column justify-center ">
               <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="CurrentColor" viewBox="0 0 256 256"><path d="M216,64H56a8,8,0,0,1,0-16H192a8,8,0,0,0,0-16H56A24,24,0,0,0,32,56V184a24,24,0,0,0,24,24H216a16,16,0,0,0,16-16V80A16,16,0,0,0,216,64Zm-36,80a12,12,0,1,1,12-12A12,12,0,0,1,180,144Z"></path></svg>
@@ -43,7 +43,7 @@
               </div>
               <span>Pending Withdrawals</span>
         </div>
-        <div class="w-full bg-white br-10 p-10 column g-5 box-shadow">
+        <div onclick="window.location.href='{{ url('admins/withdrawals/success') }}'" class="w-full bg-white br-10 p-10 column g-5 box-shadow">
            <div class="row w-full align-center g-10 space-between">
             <div class="h-50 w-50 br-10 bg-green c-white column justify-center ">
               <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="CurrentColor" viewBox="0 0 256 256"><path d="M216,64H56a8,8,0,0,1,0-16H192a8,8,0,0,0,0-16H56A24,24,0,0,0,32,56V184a24,24,0,0,0,24,24H216a16,16,0,0,0,16-16V80A16,16,0,0,0,216,64Zm-36,80a12,12,0,1,1,12-12A12,12,0,0,1,180,144Z"></path></svg>
@@ -55,7 +55,7 @@
               </div>
               <span>Successfull Withdrawals</span>
         </div>
-         <div class="w-full bg-white br-10 p-10 column g-5 box-shadow">
+         <div  onclick="window.location.href='{{ url('admins/withdrawals/rejected') }}'" class="w-full bg-white br-10 p-10 column g-5 box-shadow">
            <div class="row w-full align-center g-10 space-between">
             <div class="h-50 w-50 br-10 bg-red c-white column justify-center ">
               <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="CurrentColor" viewBox="0 0 256 256"><path d="M216,64H56a8,8,0,0,1,0-16H192a8,8,0,0,0,0-16H56A24,24,0,0,0,32,56V184a24,24,0,0,0,24,24H216a16,16,0,0,0,16-16V80A16,16,0,0,0,216,64Zm-36,80a12,12,0,1,1,12-12A12,12,0,0,1,180,144Z"></path></svg>
@@ -67,7 +67,7 @@
               </div>
               <span>Rejected Withdrawals</span>
         </div>
-         <div class="w-full bg-white br-10 p-10 column g-5 box-shadow">
+         <div class="w-full display-none bg-white br-10 p-10 column g-5 box-shadow">
            <div class="row w-full align-center g-10 space-between">
             <div class="h-50 w-50 br-10 bg-purple c-white column justify-center ">
            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="CurrentColor" viewBox="0 0 256 256"><path d="M120,56v48a16,16,0,0,1-16,16H56a16,16,0,0,1-16-16V56A16,16,0,0,1,56,40h48A16,16,0,0,1,120,56Zm-16,80H56a16,16,0,0,0-16,16v48a16,16,0,0,0,16,16h48a16,16,0,0,0,16-16V152A16,16,0,0,0,104,136Zm96-96H152a16,16,0,0,0-16,16v48a16,16,0,0,0,16,16h48a16,16,0,0,0,16-16V56A16,16,0,0,0,200,40ZM144,184a8,8,0,0,0,8-8V144a8,8,0,0,0-16,0v32A8,8,0,0,0,144,184Zm64-32H184v-8a8,8,0,0,0-16,0v56H144a8,8,0,0,0,0,16h32a8,8,0,0,0,8-8V168h24a8,8,0,0,0,0-16Zm0,32a8,8,0,0,0-8,8v16a8,8,0,0,0,16,0V192A8,8,0,0,0,208,184Z"></path></svg>
@@ -96,16 +96,16 @@
                 <div class="w-full bg-white br-10 p-10 column g-5 box-shadow">
            <div class="row w-full align-center g-10 space-between">
             <div class="h-50 w-50 br-10 bg-black c-white column justify-center ">
-         <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="CurrentColor" viewBox="0 0 256 256"><path d="M216,40H40A16,16,0,0,0,24,56V200a16,16,0,0,0,16,16H216a16,16,0,0,0,16-16V56A16,16,0,0,0,216,40ZM92.8,145.6a8,8,0,1,1-9.6,12.8l-32-24a8,8,0,0,1,0-12.8l32-24a8,8,0,0,1,9.6,12.8L69.33,128Zm58.89-71.4-32,112a8,8,0,1,1-15.38-4.4l32-112a8,8,0,0,1,15.38,4.4Zm53.11,60.2-32,24a8,8,0,0,1-9.6-12.8L186.67,128,163.2,110.4a8,8,0,1,1,9.6-12.8l32,24a8,8,0,0,1,0,12.8Z"></path></svg>
+         <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="CurrentColor" viewBox="0 0 256 256"><path d="M208,32H184V24a8,8,0,0,0-16,0v8H88V24a8,8,0,0,0-16,0v8H48A16,16,0,0,0,32,48V208a16,16,0,0,0,16,16H208a16,16,0,0,0,16-16V48A16,16,0,0,0,208,32ZM152,160H136v16a8,8,0,0,1-16,0V160H104a8,8,0,0,1,0-16h16V128a8,8,0,0,1,16,0v16h16a8,8,0,0,1,0,16ZM48,80V48H72v8a8,8,0,0,0,16,0V48h80v8a8,8,0,0,0,16,0V48h24V80Z"></path></svg>
 
                
              
             </div>
-             <div class="p-5 pointer no-select c-white text-average bg-black">
-                Manage API
+             <div onclick="window.location.href='{{ url('admins/tasks/add') }}'" class="p-5 pointer no-select c-white text-average bg-black">
+                Add Task
              </div>
               </div>
-              <span>Airtime/Data</span>
+              <span>Tasks Portal</span>
         </div>
 
     </section>

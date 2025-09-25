@@ -6,7 +6,7 @@
      <section class="column p-10  w-full flex-auto justify-center">
         <form action="{{ url('users/post/login/process') }}" method="POST" onsubmit="PostRequest(event,this,MyFunc.call_back)" class="w-full border-1 border-color-silver max-w-500 align-center br-10 bg-white  column g-5">
            <div class="column w-full p-10 align-center g-5">
-             <img src="{{ asset('favicon/logo.png?v=1.1') }}" class="w-quarter" alt="">
+             <img onclick="window.location.href='{{ url('/') }}'" src="{{ asset('favicon/logo.png?v=1.1') }}" class="w-quarter pc-pointer" alt="">
             <strong class="c-secondary desc">Welcome Back</strong>
             <span class="text-light text-dim">Login with your credentials</span>
             
@@ -15,19 +15,16 @@
            
             <label for="" class="m-right-auto m-top-10">Username or Email Address</label>
             <div class="cont w-full h-50 br-10 border-1 border-color-silver">
-                <input type="text" placeholder="Enter username or email" name="id" class="inp input required w-full h-full no-border bg-transparent br-10">
+                <input type="text" readonly autocomplete="off" onfocus="this.removeAttribute('readonly');" placeholder="Enter username or email" name="id" class="inp input required w-full h-full no-border bg-transparent br-10">
             </div>
             
             
               <label for="" class="m-right-auto m-top-10">Account Password</label>
             <div class="cont w-full h-50 br-10 border-1 border-color-silver">
-                <input type="password" placeholder="Enter your Account Password" name="password" class="inp input required w-full h-full no-border bg-transparent br-10">
+                <input type="password" readonly autocomplete="new-password"  onfocus="this.removeAttribute('readonly');" placeholder="Enter your Account Password" name="password" class="inp input required w-full h-full no-border bg-transparent br-10">
             </div>
           </div>
-            <label class="m-x-auto no-select row align-center">
-                
-               Forgot Password? <a href="{{ url('users/password/forgot') }}" class="c-green text-indent-5">Reset</a>
-            </label>
+          
             <button class="post bg-secondary secondary-text w-full bold"><span>Login Safely</span></button>
             <div class="m-x-auto no-select row align-center">
                

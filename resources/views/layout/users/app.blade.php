@@ -23,7 +23,7 @@ color:black;
 }
 body{
   
-   background-color: var(--bg);
+   background-color: whitesmoke;
  
 }
       @media(min-width:800px){
@@ -54,14 +54,14 @@ body{
         <div onclick="
             document.querySelector('nav').classList.remove('mobile-display-none');
              document.querySelector('nav section.nav').classList.add('animation-trans-in-from-left');
-            
+            document.body.classList.add('overflow-hidden');
 
             " class="h-40 w-40 column pc-display-none justify-center border-1 border-color-green c-bg br-10 p-10 bg-white">
           
           <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="green" viewBox="0 0 256 256"><path d="M228,128a12,12,0,0,1-12,12H40a12,12,0,0,1,0-24H216A12,12,0,0,1,228,128ZM40,76H216a12,12,0,0,0,0-24H40a12,12,0,0,0,0,24ZM216,180H40a12,12,0,0,0,0,24H216a12,12,0,0,0,0-24Z"></path></svg>
             
         </div>
-        <img src="{{ asset('favicon/logo.png?v=1.1') }}" alt="Logo" class="h-30">
+        <img src="{{ asset('favicon/logo.png?v=1.1') }}" alt="Logo"  onclick="window.location.href='{{ url('/') }}'" class="h-30 pc-pointer">
         <div class="m-left-auto row g-5 align-center">
             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="CurrentColor" viewBox="0 0 256 256"><path d="M221.8,175.94C216.25,166.38,208,139.33,208,104a80,80,0,1,0-160,0c0,35.34-8.26,62.38-13.81,71.94A16,16,0,0,0,48,200H88.81a40,40,0,0,0,78.38,0H208a16,16,0,0,0,13.8-24.06ZM128,216a24,24,0,0,1-22.62-16h45.24A24,24,0,0,1,128,216ZM48,184c7.7-13.24,16-43.92,16-80a64,64,0,1,1,128,0c0,36.05,8.28,66.73,16,80Z"></path></svg>
 
@@ -70,6 +70,7 @@ body{
     <nav onclick="
     this.querySelector('section.nav').classList.remove('animation-trans-in-from-left');
     this.classList.add('mobile-display-none');
+    document.body.classList.remove('overflow-hidden');
   
     " class="pos-fixed mobile-display-none border-right-1 border-color-dim high top-0 left-0 right-0 bottom-0 bg-black-transparent average">
         <section onclick="event.stopPropagation()" class="nav animation-duration-1s transition-ease-half overflow-auto column bg-secondary h-full w-semi-full">
@@ -179,7 +180,7 @@ body{
                  
                  
                  <a class="p-10 pointer clip-10 w-full row g-5 no-u secondary-text"  onclick="
-                  spa(event,'{{ url('users/settings') }}');
+                  spa(event,'{{ url('users/more') }}');
                   this.closest('nav').classList.add('mobile-display-none');
                   ">
                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="CurrentColor" viewBox="0 0 256 256"><path d="M128,80a48,48,0,1,0,48,48A48.05,48.05,0,0,0,128,80Zm0,80a32,32,0,1,1,32-32A32,32,0,0,1,128,160Zm88-29.84q.06-2.16,0-4.32l14.92-18.64a8,8,0,0,0,1.48-7.06,107.21,107.21,0,0,0-10.88-26.25,8,8,0,0,0-6-3.93l-23.72-2.64q-1.48-1.56-3-3L186,40.54a8,8,0,0,0-3.94-6,107.71,107.71,0,0,0-26.25-10.87,8,8,0,0,0-7.06,1.49L130.16,40Q128,40,125.84,40L107.2,25.11a8,8,0,0,0-7.06-1.48A107.6,107.6,0,0,0,73.89,34.51a8,8,0,0,0-3.93,6L67.32,64.27q-1.56,1.49-3,3L40.54,70a8,8,0,0,0-6,3.94,107.71,107.71,0,0,0-10.87,26.25,8,8,0,0,0,1.49,7.06L40,125.84Q40,128,40,130.16L25.11,148.8a8,8,0,0,0-1.48,7.06,107.21,107.21,0,0,0,10.88,26.25,8,8,0,0,0,6,3.93l23.72,2.64q1.49,1.56,3,3L70,215.46a8,8,0,0,0,3.94,6,107.71,107.71,0,0,0,26.25,10.87,8,8,0,0,0,7.06-1.49L125.84,216q2.16.06,4.32,0l18.64,14.92a8,8,0,0,0,7.06,1.48,107.21,107.21,0,0,0,26.25-10.88,8,8,0,0,0,3.93-6l2.64-23.72q1.56-1.48,3-3L215.46,186a8,8,0,0,0,6-3.94,107.71,107.71,0,0,0,10.87-26.25,8,8,0,0,0-1.49-7.06Zm-16.1-6.5a73.93,73.93,0,0,1,0,8.68,8,8,0,0,0,1.74,5.48l14.19,17.73a91.57,91.57,0,0,1-6.23,15L187,173.11a8,8,0,0,0-5.1,2.64,74.11,74.11,0,0,1-6.14,6.14,8,8,0,0,0-2.64,5.1l-2.51,22.58a91.32,91.32,0,0,1-15,6.23l-17.74-14.19a8,8,0,0,0-5-1.75h-.48a73.93,73.93,0,0,1-8.68,0,8,8,0,0,0-5.48,1.74L100.45,215.8a91.57,91.57,0,0,1-15-6.23L82.89,187a8,8,0,0,0-2.64-5.1,74.11,74.11,0,0,1-6.14-6.14,8,8,0,0,0-5.1-2.64L46.43,170.6a91.32,91.32,0,0,1-6.23-15l14.19-17.74a8,8,0,0,0,1.74-5.48,73.93,73.93,0,0,1,0-8.68,8,8,0,0,0-1.74-5.48L40.2,100.45a91.57,91.57,0,0,1,6.23-15L69,82.89a8,8,0,0,0,5.1-2.64,74.11,74.11,0,0,1,6.14-6.14A8,8,0,0,0,82.89,69L85.4,46.43a91.32,91.32,0,0,1,15-6.23l17.74,14.19a8,8,0,0,0,5.48,1.74,73.93,73.93,0,0,1,8.68,0,8,8,0,0,0,5.48-1.74L155.55,40.2a91.57,91.57,0,0,1,15,6.23L173.11,69a8,8,0,0,0,2.64,5.1,74.11,74.11,0,0,1,6.14,6.14,8,8,0,0,0,5.1,2.64l22.58,2.51a91.32,91.32,0,0,1,6.23,15l-14.19,17.74A8,8,0,0,0,199.87,123.66Z"></path></svg>
@@ -195,7 +196,7 @@ body{
                  
                  
 
-                 <a class="p-10 pointer clip-10 pos-sticky m-top-auto stick-bottom bg-inherit w-full row g-5 no-u c-red" href="">
+                 <a class="p-10 pointer clip-10 pos-sticky m-top-auto stick-bottom bg-inherit w-full row g-5 no-u c-red" href="{{ url('users/logout') }}">
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="CurrentColor" viewBox="0 0 256 256"><path d="M120,216a8,8,0,0,1-8,8H48a8,8,0,0,1-8-8V40a8,8,0,0,1,8-8h64a8,8,0,0,1,0,16H56V208h56A8,8,0,0,1,120,216Zm109.66-93.66-40-40a8,8,0,0,0-11.32,11.32L204.69,120H112a8,8,0,0,0,0,16h92.69l-26.35,26.34a8,8,0,0,0,11.32,11.32l40-40A8,8,0,0,0,229.66,122.34Z"></path></svg>
 
 
@@ -208,7 +209,7 @@ body{
 
         </section>
     </nav>
-    <main class="c-white">
+    <main>
        
         @yield('main')
 <section onclick="HidePopUp()" class="popup">
@@ -217,27 +218,27 @@ body{
   </div>
 </section>
 <section onclick="HideSlideUp()" class="slideup">
-  <div onclick="event.stopPropagation()" class="child bg-secondary-dark">@yield('slideup_child')</div>
+  <div style="background:white;" onclick="event.stopPropagation()" class="child bg-white">@yield('slideup_child')</div>
 </section>
     </main>
-    <footer class="w-full m-top-auto no-select bottom-0 c-white p-10 pos-sticky stick-bottom bg backdrop-blur-5 grid grid-5 place-center g-10 space-between border-top-1 border-color-dim align-center text-center c-green">
+    <footer class="w-full bg-green c-white m-top-auto no-select bottom-0 c-white p-10 pos-sticky stick-bottom bg backdrop-blur-5 grid grid-5 place-center g-10 space-between border-top-1 border-color-dim align-center text-center c-green">
    
    <div onclick="
    try{
    let f_links=document.querySelectorAll('footer .f-links');
    f_links.forEach((data)=>{
-   data.querySelector('.icon').classList.remove('bg-primary');
-   data.querySelector('.icon').classList.remove('primary-text');
-   data.querySelector('span').classList.remove('c-primary');
+   data.querySelector('.icon').classList.remove('bg-white');
+   data.querySelector('.icon').classList.remove('c-green');
+   data.querySelector('span').classList.remove('c-white');
    });
-    this.querySelector('.icon').classList.add('bg-primary');
-    this.querySelector('.icon').classList.add('primary-text');
-    this.querySelector('span').classList.add('c-primary');
+     this.querySelector('.icon').classList.add('bg-white');
+    this.querySelector('.icon').classList.add('c-green');
+    this.querySelector('span').classList.add('c-white');
     spa(event,'{{ url('users/tasks') }}')
    }catch(error){
    CreateNotify('error',error.stack);
    }
-    " class="column c-green pc-pointer f-links w-full g-2 p-5 align-center">
+    " class="column c-white pc-pointer f-links w-full g-2 p-5 align-center">
     <div class="icon transition-ease-full w-full br-1000 column justify-center p-2">
       <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="CurrentColor" viewBox="0 0 256 256"><path d="M208,32H48A16,16,0,0,0,32,48V208a16,16,0,0,0,16,16H208a16,16,0,0,0,16-16V48A16,16,0,0,0,208,32Zm-34.34,77.66-56,56a8,8,0,0,1-11.32,0l-24-24a8,8,0,0,1,11.32-11.32L112,148.69l50.34-50.35a8,8,0,0,1,11.32,11.32Z"></path></svg>
    
@@ -248,25 +249,25 @@ body{
    try{
    let f_links=document.querySelectorAll('footer .f-links');
    f_links.forEach((data)=>{
-   data.querySelector('.icon').classList.remove('bg-primary');
-   data.querySelector('.icon').classList.remove('primary-text');
-   data.querySelector('span').classList.remove('c-primary');
+    data.querySelector('.icon').classList.remove('bg-white');
+   data.querySelector('.icon').classList.remove('c-green');
+   data.querySelector('span').classList.remove('c-white');
    });
-    this.querySelector('.icon').classList.add('bg-primary');
-    this.querySelector('.icon').classList.add('primary-text');
-    this.querySelector('span').classList.add('c-primary');
+     this.querySelector('.icon').classList.add('bg-white');
+    this.querySelector('.icon').classList.add('c-green');
+    this.querySelector('span').classList.add('c-white');
     spa(event,'{{ url('users/spin') }}')
    }catch(error){
    CreateNotify('error',error.stack);
    }
-    " class="column c-green  f-links pc-pointer w-full p-5 g-2 align-center">
+    " class="column c-white  f-links pc-pointer w-full p-5 g-2 align-center">
     <div class="icon transition-ease-full w-full br-1000 column justify-center p-2">
-      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="CurrentColor" viewBox="0 0 256 256"><path d="M223.68,66.15,135.68,18a15.88,15.88,0,0,0-15.36,0l-88,48.17a16,16,0,0,0-8.32,14v95.64a16,16,0,0,0,8.32,14l88,48.17a15.88,15.88,0,0,0,15.36,0l88-48.17a16,16,0,0,0,8.32-14V80.18A16,16,0,0,0,223.68,66.15ZM128,168a40,40,0,1,1,40-40A40,40,0,0,1,128,168Z"></path></svg>
-   
+     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="CurrentColor" viewBox="0 0 256 256"><path d="M128,24A104,104,0,1,0,232,128,104.11,104.11,0,0,0,128,24Zm39.11,25.19C170.24,83.71,155,99.44,135,113.61c-2.25-24.48-8.44-49.8-38.37-67.82a87.89,87.89,0,0,1,70.5,3.4ZM40.18,133.54c28.34-20,49.57-14.68,71.87-4.39C92,143.34,73.19,161.36,72.52,196.26A87.92,87.92,0,0,1,40.18,133.54Zm136.5,67.73c-31.45-14.55-37.47-35.58-39.71-60,12.72,5.86,26.31,10.75,41.3,10.75,11.33,0,23.46-2.8,36.63-10.08A88.2,88.2,0,0,1,176.68,201.27Z"></path></svg>
+
     </div>
     <span class="transition-ease-full">Spin</span>
    </div>
-    <div onclick="spa(event,'{{ url('users/dashboard') }}')" class="column g-2 pc-pointer align-center bg-green p-10 br-10 clip-10">
+    <div onclick="spa(event,'{{ url('users/dashboard') }}')" class="column g-2 pc-pointer align-center bg-white c-green circle  p-10 br-10 clip-10">
     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="CurrentColor" viewBox="0 0 256 256"><path d="M224,120v96a8,8,0,0,1-8,8H160a8,8,0,0,1-8-8V164a4,4,0,0,0-4-4H108a4,4,0,0,0-4,4v52a8,8,0,0,1-8,8H40a8,8,0,0,1-8-8V120a16,16,0,0,1,4.69-11.31l80-80a16,16,0,0,1,22.62,0l80,80A16,16,0,0,1,224,120Z"></path></svg>
 
    </div>
@@ -275,18 +276,18 @@ body{
    try{
    let f_links=document.querySelectorAll('footer .f-links');
    f_links.forEach((data)=>{
-   data.querySelector('.icon').classList.remove('bg-primary');
-   data.querySelector('.icon').classList.remove('primary-text');
-   data.querySelector('span').classList.remove('c-primary');
+  data.querySelector('.icon').classList.remove('bg-white');
+   data.querySelector('.icon').classList.remove('c-green');
+   data.querySelector('span').classList.remove('c-white');
    });
-    this.querySelector('.icon').classList.add('bg-primary');
-    this.querySelector('.icon').classList.add('primary-text');
-    this.querySelector('span').classList.add('c-primary');
+    this.querySelector('.icon').classList.add('bg-white');
+    this.querySelector('.icon').classList.add('c-green');
+    this.querySelector('span').classList.add('c-white');
     spa(event,'{{ url('users/team') }}');
    }catch(error){
    CreateNotify('error',error.stack);
    }
-    " class="column c-green  f-links pc-pointer w-full p-5 g-2 align-center">
+    " class="column c-white  f-links pc-pointer w-full p-5 g-2 align-center">
   <div class="icon transition-ease-full w-full br-1000 column justify-center p-2">
      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="CurrentColor" viewBox="0 0 256 256"><path d="M64.12,147.8a4,4,0,0,1-4,4.2H16a8,8,0,0,1-7.8-6.17,8.35,8.35,0,0,1,1.62-6.93A67.79,67.79,0,0,1,37,117.51a40,40,0,1,1,66.46-35.8,3.94,3.94,0,0,1-2.27,4.18A64.08,64.08,0,0,0,64,144C64,145.28,64,146.54,64.12,147.8Zm182-8.91A67.76,67.76,0,0,0,219,117.51a40,40,0,1,0-66.46-35.8,3.94,3.94,0,0,0,2.27,4.18A64.08,64.08,0,0,1,192,144c0,1.28,0,2.54-.12,3.8a4,4,0,0,0,4,4.2H240a8,8,0,0,0,7.8-6.17A8.33,8.33,0,0,0,246.17,138.89Zm-89,43.18a48,48,0,1,0-58.37,0A72.13,72.13,0,0,0,65.07,212,8,8,0,0,0,72,224H184a8,8,0,0,0,6.93-12A72.15,72.15,0,0,0,157.19,182.07Z"></path></svg>
   
@@ -297,18 +298,18 @@ body{
    try{
    let f_links=document.querySelectorAll('footer .f-links');
    f_links.forEach((data)=>{
-   data.querySelector('.icon').classList.remove('bg-primary');
-   data.querySelector('.icon').classList.remove('primary-text');
-   data.querySelector('span').classList.remove('c-primary');
+    data.querySelector('.icon').classList.remove('bg-white');
+   data.querySelector('.icon').classList.remove('c-green');
+   data.querySelector('span').classList.remove('c-white');
    });
-    this.querySelector('.icon').classList.add('bg-primary');
-    this.querySelector('.icon').classList.add('primary-text');
-    this.querySelector('span').classList.add('c-primary');
+    this.querySelector('.icon').classList.add('bg-white');
+    this.querySelector('.icon').classList.add('c-green');
+    this.querySelector('span').classList.add('c-white');
     spa(event,'{{ url('users/more') }}');
    }catch(error){
    CreateNotify('error',error.stack);
    }
-    " class="column c-green  f-links pc-pointer w-full p-5 g-2 align-center">
+    " class="column c-white  f-links pc-pointer w-full p-5 g-2 align-center">
   <div class="icon transition-ease-full w-full br-1000 column justify-center p-2">
      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="CurrentColor" viewBox="0 0 256 256"><path d="M84,64A12,12,0,0,1,96,52H216a12,12,0,0,1,0,24H96A12,12,0,0,1,84,64Zm132,52H96a12,12,0,0,0,0,24H216a12,12,0,0,0,0-24Zm0,64H96a12,12,0,0,0,0,24H216a12,12,0,0,0,0-24ZM56,52H40a12,12,0,0,0,0,24H56a12,12,0,0,0,0-24Zm0,64H40a12,12,0,0,0,0,24H56a12,12,0,0,0,0-24Zm0,64H40a12,12,0,0,0,0,24H56a12,12,0,0,0,0-24Z"></path></svg>
   

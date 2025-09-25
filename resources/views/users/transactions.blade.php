@@ -24,7 +24,7 @@
         @else
        <div class="column g-10  w-full">
          <strong class="desc c-primary">Transaction History</strong>
-         <div class="grid pos-relative grid-2 space-between align-center g-10">
+         <div class="grid display-none pos-relative grid-2 space-between align-center g-10">
             <div onclick="
                try{
                 if(document.querySelector('.categories-filter').classList.contains('display-none')){
@@ -109,7 +109,7 @@
             </div>   
          </div>
        </div>
-          <div class="w-full g-10 column  br-10 box-shadow bg-secondary-dark p-10">
+          <div class="w-full g-10 column  br-10 box-shadow bg-white p-10">
               @foreach ($transactions as $data)
                 <div class="w-full row align-center g-10 space-between">
                     <div class="h-30 w-30 column svg justify-center bg-primary-transparent circle clip-circle">{!! $data->svg !!}</div>

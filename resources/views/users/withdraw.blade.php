@@ -13,7 +13,7 @@
 @endsection
 @section('main')
     <section class="w-full align-center justify-center column g-10 p-10">
-         <div class="bg-secondary-dark w-full column g-10 mmax-w-500 br-10 p-10">
+         <div class="bg-white box-shadow w-full column g-10 mmax-w-500 br-10 p-10">
             <div class="row p-10 space-between br-10 border-1 border-color-dim align-center">
 
                 <span class="desc bold">Withdraw Funds</span>
@@ -65,16 +65,16 @@
                 </div>
                 <span>Select a wallet you intend to withdraw from.</span>
             
-             <div class="cont row align-center w-full h-50 br-10 border-1 bg border-color-silver">
-                    <select name="wallet" class="inp input required w-full c-white h-full border-none bg-transparent br-10">
+             <div class="cont row align-center w-full h-50 br-10 border-1 bg-dim border-color-silver">
+                    <select name="wallet" class="inp input required w-full h-full border-none bg-transparent br-10">
                         <option value="" selected disabled>Select Wallet...</option>
-                        <option value="activities_balance">Activities Wallet</option>
-                         <option value="affiliate_balance">Affiliate Wallet</option>
+                        <option value="activities_balance">Activities Wallet  - &#8358;{{ number_format(Auth::guard('users')->user()->activities_balance,2) }}</option>
+                         <option value="affiliate_balance">Affiliate Wallet  - &#8358;{{ number_format(Auth::guard('users')->user()->affiliate_balance,2) }} </option>
                     </select>
                 </div>
                 <label for="">Enter Withdrawal Amount</label>
-                <div class="cont row align-center w-full h-50 br-10 border-1 bg border-color-silver">
-                    <input placeholder="Enter withdrawal amount" name="amount" type="number" class="w-full c-white inp input required account-number h-full no-border br-10 bg-transparent">
+                <div class="cont row align-center w-full h-50 br-10 border-1 bg-dim border-color-silver">
+                    <input placeholder="Enter withdrawal amount" name="amount" type="number" class="w-full inp input required account-number h-full no-border br-10 bg-transparent">
                 </div>
                 <span class="minimum_text"></span>
                   @if ($bank_linked !== 'false')
@@ -104,7 +104,7 @@
                  
                
               
-                <button class="post">Update Bank Details</button>
+                <button class="post">Submit Withdrawal</button>
             </form>
         </div>
     </section>

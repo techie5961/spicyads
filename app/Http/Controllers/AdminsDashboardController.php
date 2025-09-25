@@ -28,7 +28,9 @@ class AdminsDashboardController extends Controller
     }
     // add package
     public function AddPackage(){
-        return view('admins.packages.add');
+        return view('admins.packages.add',[
+            'package' => DB::table('packages')->first()
+        ]);
     }
     // add vendor
     public function AddVendor(){
@@ -355,5 +357,81 @@ class AdminsDashboardController extends Controller
             ]);
             return redirect()->to('admins/user?id='.request()->input('id').'');
         }
+    }
+    // submitted
+    public function Submitted(){
+        $proofs=DB::table('task_proofs')->orderBy('date','desc')->paginate(10);
+        $proofs->getCollection()->transform(function($each){
+            $each->frame=Carbon::parse($each->date)->diffForHumans();
+            $each->user=DB::table('users')->where('id',$each->user_id)->first();
+            $each->json=json_decode($each->json);
+            return $each;
+        });
+        if(request()->has('paginate')){
+              return view('paginate.admins',[
+            'proofs' => $proofs,
+            'task_proofs' => true
+        ]);
+        }
+        return view('admins.tasks.submitted',[
+            'total' => DB::table('task_proofs')->count(),
+            'today' => DB::table('task_proofs')->whereDate('date',Carbon::today())->count(),
+            'sum' => DB::table('task_proofs')->sum('json->reward'),
+            'proofs' => $proofs
+        ]);
+    }
+    // logs
+    public function Logs(){
+        $logs=DB::table('logs')->orderBy('date','desc')->paginate(10);
+        $logs->getCollection()->transform(function($each){
+            $each->frame=Carbon::parse($each->date)->diffForHumans();
+            $each->user=DB::table('users')->where('id',$each->user_id)->first();
+            return $each;
+        });
+        if(request()->has('paginate')){
+            return view('paginate.admins',[
+            'logs' => $logs
+        ]);
+        }
+        return view('admins.logs',[
+            'logs' => $logs
+        ]);
+    }
+    // notifications
+    public function Notifications(){
+        $notifications=DB::table('notifications')->orderBy('date','desc')->paginate(1);
+        $notifications->getCollection()->transform(function($each){
+            $each->frame=Carbon::parse($each->date)->diffForHumans();
+            return $each;
+        });
+        if(request()->has('paginate')){
+             return view('paginate.admins',[
+            'notifications' => $notifications,
+            
+        ]);
+        }
+        return view('admins.notifications',[
+            'notifications' => $notifications,
+            'total' => DB::table('notifications')->where('status','unread')->count()
+        ]);
+    }
+    // mark as read
+    public function MarkAsRead(){
+        DB::table('notifications')->where('id',request()->input('id'))->update([
+            'status' => 'read'
+        ]);
+        return redirect()->to('admins/notifications');
+    }
+     // mark all as read
+    public function MarkAllAsRead(){
+        DB::table('notifications')->update([
+            'status' => 'read'
+        ]);
+        return redirect()->to('admins/notifications');
+    }
+    // logout
+    public function Logout(){
+        Auth::guard('admins')->logout();
+        return redirect()->to('admins/login');
     }
 }
