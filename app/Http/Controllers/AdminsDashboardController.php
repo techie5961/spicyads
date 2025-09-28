@@ -236,7 +236,7 @@ class AdminsDashboardController extends Controller
            $each->package=json_decode($each->package);
            $username=$each->username;
            $each->total_downlines=DB::table('users')->where('ref',$each->username)->orWhereIn('id',function($q) use($username){
-            $q->select('username')->from('users')->where('ref',$username);
+            $q->select('id')->from('users')->where('ref',$username);
            })->count();
            if(($each->ref ?? '') !== ''){
             $each->ref_id=DB::table('users')->where('username',$each->ref)->first()->id;
@@ -265,7 +265,7 @@ class AdminsDashboardController extends Controller
            $each->package=json_decode($each->package);
            $username=$each->username;
            $each->total_downlines=DB::table('users')->where('ref',$each->username)->orWhereIn('id',function($q) use($username){
-            $q->select('username')->from('users')->where('ref',$username);
+            $q->select('id')->from('users')->where('ref',$username);
            })->count();
            if(($each->ref ?? '') !== ''){
             $each->ref_id=DB::table('users')->where('username',$each->ref)->first()->id;
@@ -294,7 +294,7 @@ class AdminsDashboardController extends Controller
            $each->package=json_decode($each->package);
            $username=$each->username;
            $each->total_downlines=DB::table('users')->where('ref',$each->username)->orWhereIn('id',function($q) use($username){
-            $q->select('username')->from('users')->where('ref',$username);
+            $q->select('id')->from('users')->where('ref',$username);
            })->count();
            if(($each->ref ?? '') !== ''){
             $each->ref_id=DB::table('users')->where('username',$each->ref)->first()->id;
@@ -323,7 +323,7 @@ class AdminsDashboardController extends Controller
           $user->package=json_decode($user->package);
            $username=$user->username;
           $user->total_downlines=DB::table('users')->where('ref',$user->username)->orWhereIn('id',function($q) use($username){
-            $q->select('username')->from('users')->where('ref',$username);
+            $q->select('id')->from('users')->where('ref',$username);
            })->count();
            if(($user->ref ?? '') !== ''){
            $user->ref_id=DB::table('users')->where('username',$user->ref)->first()->id;
@@ -360,11 +360,13 @@ class AdminsDashboardController extends Controller
     }
     // submitted
     public function Submitted(){
+
         $proofs=DB::table('task_proofs')->orderBy('date','desc')->paginate(10);
         $proofs->getCollection()->transform(function($each){
             $each->frame=Carbon::parse($each->date)->diffForHumans();
             $each->user=DB::table('users')->where('id',$each->user_id)->first();
             $each->json=json_decode($each->json);
+            
             return $each;
         });
         if(request()->has('paginate')){
@@ -377,7 +379,9 @@ class AdminsDashboardController extends Controller
             'total' => DB::table('task_proofs')->count(),
             'today' => DB::table('task_proofs')->whereDate('date',Carbon::today())->count(),
             'sum' => DB::table('task_proofs')->sum('json->reward'),
-            'proofs' => $proofs
+            'penalized' => DB::table('task_proofs')->where('status','penalized')->count(),
+            'proofs' => $proofs,
+            'penalty' =>  json_decode(DB::table('settings')->where('key','general_settings')->first()->json ?? '{}')->task_penalty
         ]);
     }
     // logs

@@ -213,8 +213,8 @@ body{
        
         @yield('main')
 <section onclick="HidePopUp()" class="popup">
-  <div onclick="event.stopPropagation()" style="background:white;color:black;" class="child">
-
+  <div onclick="event.stopPropagation()" style="background:white;color:black;" class="child box-shadow">
+@yield('popup_child')
   </div>
 </section>
 <section onclick="HideSlideUp()" class="slideup">
@@ -320,6 +320,7 @@ body{
     </footer>
 
     <script src="{{ asset('vitecss/js/app.js?v='.config('versions.vite_version').'') }}"></script>
+    
     @yield('js')
 </body>
 </html>

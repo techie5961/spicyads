@@ -27,13 +27,13 @@
         </div>
       </div>
         <div class="w-full row space-between g-10 br-10 bg-white box-shadow grid-full p-10">
-        <div class="h-50 br-10 column justify-center w-50 bg-green-transparent c-green">
-         <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="CurrentColor" viewBox="0 0 256 256"><path d="M80,120h96a8,8,0,0,0,8-8V64a8,8,0,0,0-8-8H80a8,8,0,0,0-8,8v48A8,8,0,0,0,80,120Zm8-48h80v32H88ZM200,24H56A16,16,0,0,0,40,40V216a16,16,0,0,0,16,16H200a16,16,0,0,0,16-16V40A16,16,0,0,0,200,24Zm0,192H56V40H200ZM100,148a12,12,0,1,1-12-12A12,12,0,0,1,100,148Zm40,0a12,12,0,1,1-12-12A12,12,0,0,1,140,148Zm40,0a12,12,0,1,1-12-12A12,12,0,0,1,180,148Zm-80,40a12,12,0,1,1-12-12A12,12,0,0,1,100,188Zm40,0a12,12,0,1,1-12-12A12,12,0,0,1,140,188Zm40,0a12,12,0,1,1-12-12A12,12,0,0,1,180,188Z"></path></svg>
+        <div class="h-50 br-10 column justify-center w-50 bg-red-transparent c-red">
+        <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" fill="CurrentColor" viewBox="0 0 256 256"><path d="M128,24A104,104,0,1,0,232,128,104.11,104.11,0,0,0,128,24Zm45.66,85.66-56,56a8,8,0,0,1-11.32,0l-24-24a8,8,0,0,1,11.32-11.32L112,148.69l50.34-50.35a8,8,0,0,1,11.32,11.32Z"></path></svg>
 
         </div>
         <div class="column g-2 m-right-auto">
-          <span>Total Amount</span>
-          <strong class="desc">&#8358;{{ number_format($sum,2) }}</strong>
+          <span>Total Penalized</span>
+          <strong class="desc">{{ number_format($penalized) }}</strong>
 
         </div>
       </div>
@@ -56,7 +56,7 @@
                     {{ $data->frame }}
                 </div>
             </div>
-            <div class="status {{ $data->status == 'success' ? 'green' : ($data->status == 'rejected' ? 'red' : 'gold') }}">{{ $data->status }}</div>
+            <div class="status {{ $data->status == 'success' ? 'green' : ($data->status == 'penalized' ? 'red' : 'gold') }}">{{ $data->status }}</div>
             </div>
             <hr>
             <div class="row g-5 align-center">
@@ -79,6 +79,26 @@
                  <span>Task Earning:</span>
                 <strong class="font-1 c-green">&#8358;{{ number_format($data->json->reward,2) }}</strong>
             </div>
+             <div class="row g-5 space-between align-center">
+              @isset($data->screenshot)
+                                <button onclick="window.open('{{ asset('screenshot/'.$data->screenshot.'') }}')" class="clip-5 br-5 c-white btn-green-3d">View Screenshot</button>
+             
+              @endisset
+              
+          @if ($data->status == 'success')
+               <button onclick="
+                        let data=`
+                       <svg xmlns='http://www.w3.org/2000/svg' width='50' height='50' fill='red' viewBox='0 0 256 256'><path d='M216,48H176V40a24,24,0,0,0-24-24H104A24,24,0,0,0,80,40v8H40a8,8,0,0,0,0,16h8V208a16,16,0,0,0,16,16H192a16,16,0,0,0,16-16V64h8a8,8,0,0,0,0-16ZM96,40a8,8,0,0,1,8-8h48a8,8,0,0,1,8,8v8H96Zm96,168H64V64H192ZM112,104v64a8,8,0,0,1-16,0V104a8,8,0,0,1,16,0Zm48,0v64a8,8,0,0,1-16,0V104a8,8,0,0,1,16,0Z'></path></svg> 
+                        <span class='text-center'>Are you sure you want to penalize this task proof? the user would debited the sum of <strong class='font-1 c-red'>&#8358;{{ number_format($penalty,2) }}</strong> task penalty fee from his/her activities wallet.</span>
+                    <span class='c-red text-center'>Only take this action if the user did not perform the task according to instructions or submitted the wrong proof</span>
+                    
+                        <button onclick='GetRequest(event,&quot;{{ url('admins/get/revoke/proof?id='.$data->id.'') }}&quot;,this,MyFunc.Penalized)' class='btn-red-3d w-full clip-5 g-5 br-5'>Yes! Revoke this proof</button>
+                        `;
+                        PopUp(data);
+                        " class="clip-5 br-5 c-white m-left-auto btn-red-3d">Penalize</button>
+          @endif
+             </div>
+
 
               </div>
           @endforeach
@@ -96,5 +116,14 @@
 @section('js')
     <script class="js">
         InfiniteLoading();
+        window.MyFunc={
+          Penalized : function(response){
+            CreateNotify(JSON.parse(response).status,JSON.parse(response).message);
+            if(JSON.parse(response).status == 'success'){
+              
+              window.location.reload();
+            }
+          }
+        }
     </script>
 @endsection

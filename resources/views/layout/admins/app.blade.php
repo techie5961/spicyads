@@ -318,7 +318,7 @@ background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/s
        
         @yield('main')
 <section onclick="HidePopUp()" class="popup">
-  <div onclick="event.stopPropagation()" style="background:white;color:black;" class="child">
+  <div onclick="event.stopPropagation()" style="background:white;color:black;" class="child box-shadow">
 
   </div>
 </section>

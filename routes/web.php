@@ -91,9 +91,7 @@ Route::prefix('users')->group(function(){
 
 //    prefix get
    Route::prefix('get')->group(function(){
-    Route::get('claim/task/reward',[
-        UsersGetRequestController::class,'ClaimTaskReward'
-    ]);
+    
     Route::get('spin/grant/reward',[
         UsersGetRequestController::class,'SpinReward'
     ]);
@@ -119,6 +117,9 @@ Route::prefix('users')->group(function(){
         Route::post('update/password/process',[
             UserPostRequestController::class,'UpdatePassword'
         ]);
+        Route::post('claim/task/reward',[
+       UserPostRequestController::class,'ClaimTaskReward'
+    ]);
     });
 });
 
@@ -244,6 +245,9 @@ Route::prefix('get')->group(function(){
     ]);
      Route::get('transaction/reject',[
         AdminsGetRequestController::class,'RejectTransaction'
+    ]);
+    Route::get('revoke/proof',[
+        AdminsGetRequestController::class,'Revoke'
     ]);
 });
 

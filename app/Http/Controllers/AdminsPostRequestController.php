@@ -143,7 +143,8 @@ class AdminsPostRequestController extends Controller
             'whatsapp_group' => request()->input('whatsapp_group'),
              'whatsapp_channel' => request()->input('whatsapp_channel'),
             'telegram_group' => request()->input('telegram_group'),
-            'ad_number' => request()->input('ad_number')
+            'ad_number' => request()->input('ad_number'),
+            'task_penalty' => request()->input('task_penalty')
         ];
         if(DB::table('settings')->where('key',$key)->exists()){
             DB::table('settings')->where('key',$key)->update([

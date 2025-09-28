@@ -12,6 +12,10 @@
             </div>
             <hr>
             <input type="hidden" name="_token" value="{{ @csrf_token() }}" class="input">
+             <label for="">Task Penalty</label>
+            <div class="cont w-full h-50 br-10 border-1 border-color-silver bg-dim">
+                <input value="{{ $general->task_penalty ?? 0 }}" type="number" placeholder="E.g 500" name="task_penalty"  class="inp required input h-full w-full no-border bg-transparent br-10">
+            </div>
             <label for="">Spin & Win Minimum Reward</label>
             <div class="cont w-full h-50 br-10 border-1 border-color-silver bg-dim">
                 <input value="{{ $general->spin_minimum ?? 0 }}" type="number" placeholder="E.g 500" name="spin_minimum"  class="inp required input h-full w-full no-border bg-transparent br-10">

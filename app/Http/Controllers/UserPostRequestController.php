@@ -46,6 +46,14 @@ class UserPostRequestController extends Controller
     //   //  return $package;
     //     $welcome_bonus=$package->cashback;
     //    }
+    if(request()->has('ref')){
+        if(DB::table('users')->where('ip',request()->ip())->exists()){
+           return response()->json([
+            'message' => 'Self referral is strictly prohibitted',
+            'status' => 'error'
+           ]);
+        }
+    }
     $package=DB::table('packages')->orderBy('date','desc')->first();
     $welcome_bonus=$package->cashback;
    // return $package;
@@ -58,6 +66,7 @@ class UserPostRequestController extends Controller
         'phone' => request()->input('phone') ?? null,
         'package' => json_encode($package ?? []),
         'coupon' => 'null',
+        'ip' => request()->ip(),
         'activities_balance' => $welcome_bonus,
         'ref' => request()->input('ref'),
         'password' => Hash::make(request()->input('password')),
@@ -179,7 +188,7 @@ class UserPostRequestController extends Controller
         }
         if($user->status == 'banned'){
             return response()->json([
-                'message' => 'User account has been banned',
+                'message' => 'Your account has been banned for violating our terms & conditions',
                 'status' => 'error'
             ]);
         }
@@ -189,6 +198,9 @@ class UserPostRequestController extends Controller
         'updated' => Carbon::now(),
         'date' => Carbon::now(),
         'status' => 'success'
+        ]);
+        DB::table('users')->where('id',$user->id)->update([
+            'ip' => request()->ip()
         ]);
         Auth::guard('users')->loginUsingId($user->id,true);
         return response()->json([
@@ -309,5 +321,67 @@ class UserPostRequestController extends Controller
             'url' => url('users/more')
         ]);
        
+    }
+    // claim task reward
+    public function ClaimTaskReward(){
+        if(DB::table('task_proofs')->where('task_id',request()->input('id'))->where('user_id',Auth::guard('users')->user()->id)->exists()){
+            return response()->json([
+                'message' => 'you have performed this task before',
+                'status' => 'error'
+            ]);
+        }
+        $task=DB::table('tasks')->where('id',request()->input('id'))->first();
+    //  return $task;
+        $name=time().'.'.request()->file('screenshot')->getClientOriginalExtension();
+        if(request()->file('screenshot')->move(public_path('screenshot'),$name)){
+
+              DB::table('users')->where('id',Auth::guard('users')->user()->id)->update([
+            'activities_balance' => DB::raw('activities_balance + '.$task->reward.''),
+            'updated' => Carbon::now()
+        ]);
+        DB::table('transactions')->insert([
+            'user_id' => Auth::guard('users')->user()->id,
+            'type' => 'Task Reward',
+            'class' => 'credit',
+            'amount' => $task->reward,
+            'svg' => '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#000000" viewBox="0 0 256 256"><path d="M208,32H48A16,16,0,0,0,32,48V208a16,16,0,0,0,16,16H208a16,16,0,0,0,16-16V48A16,16,0,0,0,208,32Zm-12.69,88L136,60.69V48h12.69L208,107.32V120ZM136,83.31,172.69,120H136Zm72,1.38L171.31,48H208ZM120,48v72H48V48ZM107.31,208,48,148.69V136H60.69L120,195.31V208ZM120,172.69,83.31,136H120Zm-72-1.38L84.69,208H48ZM208,208H136V136h72v72Z"></path></svg>',
+            'json' => json_encode([
+                'data' => $task,
+                'wallet' => 'activities_wallet'
+            ]),
+            'status' => 'success',
+            'updated' => Carbon::now(),
+            'date' => Carbon::now()
+        ]);
+             DB::table('task_proofs')->insert([
+            'user_id' => Auth::Guard('users')->user()->id,
+            'task_id' => $task->id,
+            'screenshot' => $name,
+            'json' => json_encode($task),
+            'uniqid' => strtoupper(uniqid('PRF')),
+            'status' => 'success',
+            'updated' => Carbon::now(),
+            'date' => Carbon::now()
+        ]);
+
+        DB::table('tasks')->where('id',request()->input('id'))->update([
+            'completed' => DB::raw('`completed` + 1'),
+            'status' => DB::raw('CASE WHEN `completed` + 1 >= `limit` THEN "completed" ELSE "active" END')
+        ]);
+         DB::table('notifications')->insert([
+        'message' => '<strong class="font-1 c-green">'.Auth::guard('users')->user()->username.'</strong> Just completed a task',
+        'status' => 'unread',
+        'date' => Carbon::now(),
+        'updated' => Carbon::now()
+       ]);
+        return response()->json([
+            'status' => 'success',
+            'message' => 'Task completed and reward granted',
+        
+        ]);
+        }
+       
+
+
     }
 }

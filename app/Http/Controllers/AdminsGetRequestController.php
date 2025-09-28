@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Carbon\Carbon;
 
 class AdminsGetRequestController extends Controller
 {
@@ -103,5 +104,35 @@ class AdminsGetRequestController extends Controller
             'users' => $users
         ]);
 
+    }
+    // revoke task
+    public function Revoke(){
+        $penalty=json_decode(DB::table('settings')->where('key','general_settings')->first()->json ?? '{}')->task_penalty;
+
+        $proof=DB::table('task_proofs')->where('id',request()->input('id'))->first();
+        DB::table('users')->where('id',$proof->user_id)->update([
+            'activities_balance' => DB::raw('activities_balance - '.$penalty.'')
+        ]);
+          DB::table('transactions')->insert([
+            'user_id' => $proof->user_id,
+            'type' => 'Task Penalty',
+            'class' => 'debit',
+            'amount' => $penalty,
+            'svg' => '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#000000" viewBox="0 0 256 256"><path d="M128,24A104,104,0,1,0,232,128,104.11,104.11,0,0,0,128,24Zm45.66,85.66-56,56a8,8,0,0,1-11.32,0l-24-24a8,8,0,0,1,11.32-11.32L112,148.69l50.34-50.35a8,8,0,0,1,11.32,11.32Z"></path></svg>',
+            'json' => json_encode([
+                'data' => $proof,
+                'wallet' => 'activities_wallet'
+            ]),
+            'status' => 'success',
+            'updated' => Carbon::now(),
+            'date' => Carbon::now()
+        ]);
+        DB::table('task_proofs')->where('id',request()->input('id'))->update([
+            'status' => 'penalized'
+        ]);
+        return response()->json([
+            'message' => 'User penalized successfully',
+            'status' => 'success'
+        ]);
     }
 }
