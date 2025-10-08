@@ -1,0 +1,14 @@
+<input onchange="
+       try{
+        if(this.files[0]){
+        document.querySelector('.prev-img').src=URL.createObjectURL(this.files[0]);
+        document.querySelector('.prev-img').classList.remove('display-none');
+        document.querySelector('.prompt').classList.add('display-none');
+        }else{
+          document.querySelector('.prev-img').classList.add('display-none');
+        document.querySelector('.prompt').classList.remove('display-none');
+        }
+       }catch(error){
+       alert(error.stack);
+       }
+        " type="file" accept="image/*" class="display-none" >

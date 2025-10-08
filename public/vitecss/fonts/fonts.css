@@ -1,0 +1,198 @@
+@font-face {
+    font-family: 'poppins';
+    src: url('Poppins/Poppins-Regular.ttf');
+    font-weight: normal;
+}
+@font-face {
+    font-family: 'poppins';
+    src: url('Poppins/Poppins-ExtraBold.ttf');
+    font-weight:900;
+}
+@font-face {
+    font-family: 'poppins';
+    src: url('Poppins/Poppins-ExtraLight.ttf');
+    font-weight:100;
+}
+@font-face {
+    font-family: 'poppins';
+    src: url('Poppins/Poppins-BoldItalic.ttf');
+    font-weight:900;
+    font-style:italic;
+}
+@font-face {
+    font-family: 'poppins';
+    src: url('Poppins/Poppins-Italic.ttf');
+    font-weight:normal;
+    font-style: italic;
+}
+@font-face {
+    font-family: 'poppins';
+    src: url('Poppins/Poppins-ExtraLightItalic.ttf');
+    font-style: italic;
+    font-weight:100;
+}
+@font-face {
+    font-family: 'alfa slab';
+    src: url('Alfa_Slab_One/AlfaSlabOne-Regular.ttf');
+}
+@font-face {
+    font-family: 'anton';
+    src: url('Anton/Anton-Regular.ttf');
+}
+@font-face {
+    font-family: 'achivo black';
+    src: url('Archivo_Black/ArchivoBlack-Regular.ttf');
+}
+@font-face {
+    font-family: 'dancing script';
+    src: url('Dancing_Script/DancingScript-VariableFont_wght.ttf');
+}
+@font-face {
+    font-family: 'dm sans';
+    src: url('DM_Sans/static/DMSans-Regular.ttf');
+}
+@font-face {
+    font-family: 'dm sans';
+    src: url('DM_Sans/static/DMSans-Bold.ttf');
+    font-weight:700;
+}
+@font-face {
+    font-family: 'dm sans';
+    src: url('DM_Sans/static/DMSans-ExtraBold.ttf');
+    font-weight:900;
+}
+@font-face {
+    font-family: 'dm sans';
+    src: url('DM_Sans/static/DMSans_18pt-Light.ttf');
+    font-weight:100;
+}
+
+@font-face {
+    font-family: 'dm sans';
+    src: url('DM_Sans/DMSans-Italic-VariableFont_opsz\,wght.ttf');
+    font-style: italic;
+}
+@font-face {
+    font-family: 'pacifico';
+    src: url('Pacifico/Pacifico-Regular.ttf');
+}
+@font-face {
+    font-family: 'cinzel decorative';
+    src: url('Cinzel_Decorative/CinzelDecorative-Regular.ttf');
+    font-weight:normal;
+
+
+}
+@font-face {
+    font-family: 'cinzel decorative';
+    src: url('Cinzel_Decorative/CinzelDecorative-Bold.ttf');
+    font-weight:bold;
+
+
+}
+@font-face {
+    font-family: 'ryal';
+    src: url('Ryal/a-ryal-black-block.ttf');
+}
+@font-face {
+    font-family: 'plaster';
+    src: url('Plaster/Plaster-Regular.ttf');
+}
+@font-face {
+    font-family: 'reem kufi ink';
+    src: url('Reem_Kufi_Ink/ReemKufiInk-Regular.ttf');
+}
+@font-face {
+    font-family: 'libertinus sans';
+    src: url('Libertinus_Sans/LibertinusSans-Regular.ttf');
+}
+@font-face {
+    font-family: 'libertinus sans';
+    src: url('Libertinus_Sans/LibertinusSans-Bold.ttf');
+    font-weight:bold;
+}
+@font-face {
+    font-family: 'libertinus sans';
+    src: url('Libertinus_Sans/LibertinusSans-Italic.ttf');
+    font-style: italic;
+}
+@font-face {
+    font-family: 'teachers';
+    src: url('Teachers/Teachers-VariableFont_wght.ttf');
+}
+@font-face {
+    font-family: 'outfit';
+    src: url('Outfit/static/Outfit-Regular.ttf');
+}
+@font-face {
+    font-family: 'outfit';
+    src: url('Outfit/static/Outfit-Bold.ttf');
+    font-weight:700;
+}
+@font-face {
+    font-family: 'outfit';
+    src: url('Outfit/static/Outfit-ExtraBold.ttf');
+    font-weight:900;
+}
+@font-face {
+    font-family: 'outfit';
+    src: url('Outfit/static/Outfit-Light.ttf');
+    font-weight:300;
+}
+@font-face {
+    font-family: 'outfit';
+    src: url('Outfit/static/Outfit-ExtraLight.ttf');
+    font-weight:100;
+}
+@font-face {
+    font-family: 'afacad flux';
+    src: url('Afacad_Flux/static/AfacadFlux-Regular.ttf');
+}
+@font-face {
+    font-family: 'afacad flux';
+    src: url('Afacad_Flux/static/AfacadFlux-Bold.ttf');
+    font-weight:700;
+}
+@font-face {
+    font-family: 'afacad flux';
+    src: url('Afacad_Flux/static/AfacadFlux-ExtraBold.ttf');
+    font-weight:900;
+}
+@font-face {
+    font-family: 'afacad flux';
+    src: url('Afacad_Flux/static/AfacadFlux-Light.ttf');
+    font-weight:100;
+}
+@font-face {
+    font-family: 'faster one';
+    src: url('Faster_One/FasterOne-Regular.ttf');
+
+}
+@font-face {
+    font-family: 'tilt prism';
+    src: url('Tilt_Prism/TiltPrism-Regular-VariableFont_XROT\,YROT.ttf');
+}
+@font-face {
+    font-family: 'outfit';
+    src: url('Outfit/static/Outfit-Regular.ttf');
+}
+@font-face {
+    font-family: 'outfit';
+    src: url('Outfit/static/Outfit-ExtraBold.ttf');
+    font-weight:900;
+}
+@font-face {
+    font-family: 'outfit';
+    src: url('Outfit/static/Outfit-Bold.ttf');
+    font-weight:700;
+}
+@font-face {
+    font-family: 'outfit';
+    src: url('Outfit/static/Outfit-SemiBold.ttf');
+    font-weight:600;
+}
+@font-face {
+    font-family: 'outfit';
+    src: url('Outfit/static/Outfit-Light.ttf');
+    font-weight: 100;
+}
